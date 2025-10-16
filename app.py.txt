@@ -1,0 +1,25 @@
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the Coupon Service!"})
+
+@app.route('/coupon')
+def coupon():
+    return jsonify({
+        "coupon_id": "C123",
+        "discount": "10%",
+        "valid_till": "2025-12-31"
+    })
+
+@app.route('/cpu-load')
+def cpu_load():
+    result = 0
+    for i in range(1, 10000000):
+        result += i*i
+    return jsonify({"result": result})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
